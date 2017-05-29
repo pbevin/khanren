@@ -1,0 +1,54 @@
+name:                khanren
+version:             0.1.0.0
+-- synopsis:
+-- description:
+homepage:            https://github.com/pbevin/khanren#readme
+license:             BSD3
+license-file:        LICENSE
+author:              Pete Bevin
+maintainer:          pete@petebevin.com
+copyright:           (C) 2016 Pete Bevin. All rights reserved.
+category:            Web
+build-type:          Simple
+extra-source-files:  README.md
+cabal-version:       >=1.10
+
+library
+  hs-source-dirs:      src
+  ghc-options:         -Wall
+  exposed-modules:     Khanren.Core
+                     , Khanren.Types
+                     , Khanren.Unify
+                     , Khanren.State
+                     , LocalPrelude
+  build-depends:       base >= 4.7 && < 5
+                     , protolude >= 0.1.6 && < 0.2
+  default-language:    Haskell2010
+  default-extensions:  OverloadedStrings, NoImplicitPrelude
+
+executable khanren-exe
+  hs-source-dirs:      app
+  main-is:             Main.hs
+  ghc-options:         -Wall -threaded -rtsopts -with-rtsopts=-N
+  build-depends:       base
+                     , khanren
+                     , protolude >= 0.1.6 && < 0.2
+  default-language:    Haskell2010
+  default-extensions:  OverloadedStrings, NoImplicitPrelude
+
+test-suite khanren-test
+  type:                exitcode-stdio-1.0
+  hs-source-dirs:      test
+  main-is:             Spec.hs
+  build-depends:       base
+                     , khanren
+                     , protolude >= 0.1.6 && < 0.2
+                     , containers
+                     , hspec
+  ghc-options:         -Wall -threaded -rtsopts -with-rtsopts=-N
+  default-language:    Haskell2010
+  default-extensions:  OverloadedStrings, NoImplicitPrelude
+
+source-repository head
+  type:     git
+  location: https://github.com/pbevin/khanren
